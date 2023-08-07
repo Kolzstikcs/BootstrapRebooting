@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourEnglishPrep - Prepare for English</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Font Awesome CSS for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container">
+            <a class="navbar-brand text-white" href="#">YourEnglishPrep.com</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white"  href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white clickables" page_name="courses" href="#/courses">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white clickables" page_name="Past-Questions" href="#/Past-Questions">Past Questions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white clickables" page_name="Contact" href="#/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="includes/forms.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="includes/forms.html">Signup</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="home-page ">
+  
+</div>
+    <footer class="bg-primary text-white text-center py-4">
+        <div class="container">
+            <p class="mb-2">For inquiries and support, contact us at:</p>
+            <p class="mb-2">Email: info@yourenglishprep.com</p>
+            <p class="mb-2">Phone: +234 802 331 4444</p>
+        </div>
+        <div class="social-icons mb-2">
+            <!-- Add your social media icons here -->
+        </div>
+        <p class="mb-0">&copy; 2023 YourEnglishPrep.com. All rights reserved.</p>
+    </footer>
+
+    <!-- Add the Bootstrap JS and jQuery scripts at the end of the body tag for Bootstrap features -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function($) {
+      // Function to load content based on URL hash
+      function loadContentFromHash() {
+        var hash = window.location.hash.substring(1);
+        if (hash === "") {
+          // If no hash, load default content (e.g., home)
+          $(document).find('.home-page').load("includes/homepage.html");
+        } else if (hash.startsWith("Topics/")) {
+          // If the hash starts with "Topics/", load the content from the corresponding file
+          var topic = hash.substring(7); // Remove "Topics/" from the hash
+          var contentPath = "includes/Topics/" + topic + ".html";
+          $(document).find('.home-page').load(contentPath);
+        } else {
+          // Load content based on the hash
+          $(document).find('.home-page').load("includes/" + hash + ".html");
+        }
+      }
+  
+      // Function to handle hashchange event
+      function handleHashChange() {
+        loadContentFromHash();
+      }
+  
+      // Load initial content based on URL hash
+      loadContentFromHash();
+  
+      // Handle click events on navigation links
+      $(document).on('click', '.clickables', function(event) {
+        event.preventDefault();
+        var screen_name = $(this).attr('page_name');
+        window.location.hash = '/' + screen_name;
+      });
+  
+      // Handle click events on "Enroll Now" link inside courses.html
+      $(document).on('click', '.enroll-link', function(event) {
+        event.preventDefault();
+        var href = $(this).attr('href');
+        window.location.hash = href;
+      });
+  
+      // Listen for hashchange event and handle content loading
+      $(window).on('hashchange', function() {
+        handleHashChange();
+      });
+    });
+  </script>
+  
+</body>
+
+</html>
